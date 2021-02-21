@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Przelicznik jednostek</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+
+
+<script type="text/javascript">
+    function select_script()
+    {
+        let select = document.getElementById('typ').value;
+        if(select == "odleglosc")
+        {
+            document.getElementById('typ_odleglosc').style = "display: flex;";
+            document.getElementById('typ_przechowywanie').style = "display: none;";
+            document.getElementById('typ_czas').style = "display: none;";
+            document.getElementById('typ_obszar').style = "display: none;";
+
+            document.getElementById('wyniki_odleglosc').style = "display: flex;";
+            document.getElementById('wyniki_obszar').style = "display: none;";
+            document.getElementById('wyniki_czas').style = "display: none;";
+            document.getElementById('wyniki_przechowywanie').style = "display: none;";
+
+        }
+        if(select == "przechowywanie")
+        {
+            document.getElementById('typ_przechowywanie').style = "display: flex;";
+            document.getElementById('typ_czas').style = "display: none;";
+            document.getElementById('typ_obszar').style = "display: none;";
+            document.getElementById('typ_odleglosc').style = "display: none;";
+
+            document.getElementById('wyniki_odleglosc').style = "display: none;";
+            document.getElementById('wyniki_obszar').style = "display: none;";
+            document.getElementById('wyniki_czas').style = "display: none;";
+            document.getElementById('wyniki_przechowywanie').style = "display: flex;";
+
+        }
+        if(select == "czas")
+        {
+            document.getElementById('typ_czas').style = "display: flex;";
+            document.getElementById('typ_obszar').style = "display: none;";
+            document.getElementById('typ_odleglosc').style = "display: none;";
+            document.getElementById('typ_przechowywanie').style = "display: none;";
+
+            document.getElementById('wyniki_odleglosc').style = "display: none;";
+            document.getElementById('wyniki_obszar').style = "display: none;";
+            document.getElementById('wyniki_czas').style = "display: flex;";
+            document.getElementById('wyniki_przechowywanie').style = "display: none;";
+        }
+        if(select == "obszar")
+        {
+            document.getElementById('typ_obszar').style = "display: flex;";
+            document.getElementById('typ_odleglosc').style = "display: none;";
+            document.getElementById('typ_przechowywanie').style = "display: none;";
+            document.getElementById('typ_czas').style = "display: none;";
+
+            document.getElementById('wyniki_odleglosc').style = "display: none;";
+            document.getElementById('wyniki_obszar').style = "display: flex;";
+            document.getElementById('wyniki_czas').style = "display: none;";
+            document.getElementById('wyniki_przechowywanie').style = "display: none;";
+        }
+    }
+
+    function isNumber(evt) {
+        var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+        if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function convert()
+    {
+        let numberLen = document.getElementById('liczba').maxLength;
+        document.getElementById('liczba').innerHTML = numberLen;
+
+        let number = document.getElementById('liczba').value;
+        let select = document.getElementById('typ').value;
+
+        if(select == "odleglosc")
+        {
+            let select_jednostka = document.getElementById('typ_odleglosc').value;
+            if (select_jednostka == "milimetr") {
+                document.getElementById('wyniki_milimetr').innerText = number;
+                document.getElementById('wyniki_centymetr').innerText = (number * 0.1).toPrecision(4);
+                document.getElementById('wyniki_decymetr').innerText = (number * 0.01).toPrecision(4);
+                document.getElementById('wyniki_metr').innerText = (number * 0.001).toPrecision(4);
+                document.getElementById('wyniki_kilometr').innerText = (number * 0.000001).toPrecision(4);
+                document.getElementById('wyniki_mila').innerText = (number * 0.000001 * 0.62137).toPrecision(4);
+            }
+            if (select_jednostka == "centymetr") {
+                document.getElementById('wyniki_milimetr').innerText = (number * 10).toPrecision(4);
+                document.getElementById('wyniki_centymetr').innerText = number;
+                document.getElementById('wyniki_decymetr').innerText = (number * 0.1).toPrecision(4);
+                document.getElementById('wyniki_metr').innerText = (number * 0.01).toPrecision(4);
+                document.getElementById('wyniki_kilometr').innerText = (number * 0.00001).toPrecision(4);
+                document.getElementById('wyniki_mila').innerText = (number * 0.00001 * 0.62137).toPrecision(4);
+            }
+            if (select_jednostka == "decymetr") {
+                document.getElementById('wyniki_milimetr').innerText = (number * 100).toPrecision(4);
+                document.getElementById('wyniki_centymetr').innerText = (number * 10).toPrecision(4);
+                document.getElementById('wyniki_decymetr').innerText = number;
+                document.getElementById('wyniki_metr').innerText = (number * 0.1).toPrecision(4);
+                document.getElementById('wyniki_kilometr').innerText = (number * 0.0001).toPrecision(4);
+                document.getElementById('wyniki_mila').innerText = (number * 0.0001 * 0.62137).toPrecision(4);
+            }
+            if (select_jednostka == "metr") {
+                document.getElementById('wyniki_milimetr').innerText = (number * 1000).toPrecision(4);
+                document.getElementById('wyniki_centymetr').innerText = (number * 100).toPrecision(4);
+                document.getElementById('wyniki_decymetr').innerText = (number * 10).toPrecision(4);
+                document.getElementById('wyniki_metr').innerText = number;
+                document.getElementById('wyniki_kilometr').innerText = (number * 0.001).toPrecision(4);
+                document.getElementById('wyniki_mila').innerText = (number * 0.001 * 0.62137).toPrecision(4);
+            }
+            if (select_jednostka == "kilometr") {
+                document.getElementById('wyniki_milimetr').innerText = (number * 1000000).toPrecision(4);
+                document.getElementById('wyniki_centymetr').innerText = (number * 100000).toPrecision(4);
+                document.getElementById('wyniki_decymetr').innerText = (number * 10000).toPrecision(4);
+                document.getElementById('wyniki_metr').innerText = (number * 1000).toPrecision(4);
+                document.getElementById('wyniki_kilometr').innerText = number;
+                document.getElementById('wyniki_mila').innerText = (number * 0.62137).toPrecision(4);
+            }
+            if (select_jednostka == "mila") {
+                document.getElementById('wyniki_milimetr').innerText = (number / 0.62137 * 1000000).toPrecision(4);
+                document.getElementById('wyniki_centymetr').innerText = (number / 0.62137 * 100000).toPrecision(4);
+                document.getElementById('wyniki_decymetr').innerText = (number / 0.62137 * 10000).toPrecision(4);
+                document.getElementById('wyniki_metr').innerText = (number / 0.62137 * 1000).toPrecision(4);
+                document.getElementById('wyniki_kilometr').innerText = (number / 0.62137).toPrecision(4);
+                document.getElementById('wyniki_mila').innerText = number
+            }
+        }
+
+        if(select == "przechowywanie")
+        {
+            let select_jednostka = document.getElementById('typ_przechowywanie').value;
+
+            if(select_jednostka == "bit")
+            {
+                document.getElementById('wyniki_bit').innerText = number;
+                document.getElementById('wyniki_kilobit').innerText = (number / 1024).toPrecision(4);
+                document.getElementById('wyniki_megabit').innerText = (number / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabit').innerText = (number / 1024 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabit').innerText = (number / 1024 / 1024 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_bajt').innerText = (number / 8).toPrecision(4);
+                document.getElementById('wyniki_kilobajt').innerText = (number / 8 / 1024).toPrecision(4);
+                document.getElementById('wyniki_megabajt').innerText = (number / 8 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabajt').innerText = (number / 8 / 1024 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabajt').innerText = (number / 8 / 1024 / 1024 / 1024 / 1024).toPrecision(4);
+            }
+            if(select_jednostka == "kilobit")
+            {
+                document.getElementById('wyniki_bit').innerText = (number * 1024).toPrecision(4);
+                document.getElementById('wyniki_kilobit').innerText = number;
+                document.getElementById('wyniki_megabit').innerText = (number / 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabit').innerText = (number / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabit').innerText = (number / 1024 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_bajt').innerText = (number / 8 * 1024).toPrecision(4);
+                document.getElementById('wyniki_kilobajt').innerText = (number / 8).toPrecision(4);
+                document.getElementById('wyniki_megabajt').innerText = (number / 8 / 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabajt').innerText = (number / 8 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabajt').innerText = (number / 8 / 1024 / 1024 / 1024).toPrecision(4);
+            }
+            if(select_jednostka == "megabit")
+            {
+                document.getElementById('wyniki_bit').innerText = (number * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_kilobit').innerText = (number * 1024).toPrecision(4);
+                document.getElementById('wyniki_megabit').innerText = number;
+                document.getElementById('wyniki_gigabit').innerText = (number / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabit').innerText = (number / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_bajt').innerText = (number / 8 * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_kilobajt').innerText = (number / 8 * 1024).toPrecision(4);
+                document.getElementById('wyniki_megabajt').innerText = (number / 8).toPrecision(4);
+                document.getElementById('wyniki_gigabajt').innerText = (number / 8 / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabajt').innerText = (number / 8 / 1024 / 1024).toPrecision(4);
+            }
+            if(select_jednostka == "gigabit")
+            {
+                document.getElementById('wyniki_bit').innerText = (number * 1024 * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_kilobit').innerText = (number * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_megabit').innerText = (number * 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabit').innerText = number;
+                document.getElementById('wyniki_terabit').innerText = (number / 1024).toPrecision(4);
+                document.getElementById('wyniki_bajt').innerText = (number / 8 * 1024 * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_kilobajt').innerText = (number / 8 * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_megabajt').innerText = (number / 8 * 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabajt').innerText = (number / 8).toPrecision(4);
+                document.getElementById('wyniki_terabajt').innerText = (number / 8 / 1024).toPrecision(4);
+            }
+            if(select_jednostka == "terabit")
+            {
+                document.getElementById('wyniki_bit').innerText = (number * 1024 * 1024 * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_kilobit').innerText = (number * 1024 * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_megabit').innerText = (number * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabit').innerText = (number * 1024).toPrecision(4);
+                document.getElementById('wyniki_terabit').innerText = number;
+                document.getElementById('wyniki_bajt').innerText = (number / 8 * 1024 * 1024 * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_kilobajt').innerText = (number / 8 * 1024 * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_megabajt').innerText = (number / 8 * 1024 * 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabajt').innerText = (number / 8 * 1024).toPrecision(4);
+                document.getElementById('wyniki_terabajt').innerText = (number / 8).toPrecision(4);
+            }
+            if(select_jednostka == "bajt")
+            {
+                document.getElementById('wyniki_bit').innerText = number * 8;
+                document.getElementById('wyniki_kilobit').innerText = (number * 8 / 1024).toPrecision(4);
+                document.getElementById('wyniki_megabit').innerText = (number * 8 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabit').innerText = (number * 8 / 1024 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabit').innerText = (number * 8 / 1024 / 1024 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_bajt').innerText = number;
+                document.getElementById('wyniki_kilobajt').innerText = (number / 1024).toPrecision(4);
+                document.getElementById('wyniki_megabajt').innerText = (number / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabajt').innerText = (number / 1024 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabajt').innerText = (number / 1024 / 1024 / 1024 / 1024).toPrecision(4);
+            }
+            if(select_jednostka == "kilobajt")
+            {
+                document.getElementById('wyniki_bit').innerText = number * 8 * 1024;
+                document.getElementById('wyniki_kilobit').innerText = number * 8;
+                document.getElementById('wyniki_megabit').innerText = (number * 8 / 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabit').innerText = (number * 8 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabit').innerText = (number * 8 / 1024 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_bajt').innerText = number  * 1024;
+                document.getElementById('wyniki_kilobajt').innerText = number;
+                document.getElementById('wyniki_megabajt').innerText = (number / 1024).toPrecision(4);
+                document.getElementById('wyniki_gigabajt').innerText = (number / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabajt').innerText = (number / 1024 / 1024 / 1024).toPrecision(4);
+            }
+            if(select_jednostka == "megabajt")
+            {
+                document.getElementById('wyniki_bit').innerText = number * 8 * 1024 * 1024;
+                document.getElementById('wyniki_kilobit').innerText = number * 8 * 1024;
+                document.getElementById('wyniki_megabit').innerText = number * 8;
+                document.getElementById('wyniki_gigabit').innerText = (number * 8 / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabit').innerText = (number * 8 / 1024 / 1024).toPrecision(4);
+                document.getElementById('wyniki_bajt').innerText = number  * 1024 * 1024;
+                document.getElementById('wyniki_kilobajt').innerText = number * 1024;
+                document.getElementById('wyniki_megabajt').innerText = number;
+                document.getElementById('wyniki_gigabajt').innerText = (number / 1024).toPrecision(4);
+                document.getElementById('wyniki_terabajt').innerText = (number / 1024 / 1024).toPrecision(4);
+            }
+            if(select_jednostka == "gigabajt")
+            {
+                document.getElementById('wyniki_bit').innerText = number * 8 * 1024 * 1024 * 1024;
+                document.getElementById('wyniki_kilobit').innerText = number * 8 * 1024 * 1024;
+                document.getElementById('wyniki_megabit').innerText = number * 8 * 1024;
+                document.getElementById('wyniki_gigabit').innerText = number * 8;
+                document.getElementById('wyniki_terabit').innerText = (number * 8 / 1024).toPrecision(4);
+                document.getElementById('wyniki_bajt').innerText = number  * 1024 * 1024 * 1024;
+                document.getElementById('wyniki_kilobajt').innerText = number * 1024 * 1024;
+                document.getElementById('wyniki_megabajt').innerText = number * 1024;
+                document.getElementById('wyniki_gigabajt').innerText = number;
+                document.getElementById('wyniki_terabajt').innerText = (number / 1024).toPrecision(4);
+            }
+            if(select_jednostka == "terabajt")
+            {
+                document.getElementById('wyniki_bit').innerText = number * 8 * 1024 * 1024 * 1024 * 1024;
+                document.getElementById('wyniki_kilobit').innerText = number * 8 * 1024 * 1024 * 1024;
+                document.getElementById('wyniki_megabit').innerText = number * 8 * 1024 * 1024;
+                document.getElementById('wyniki_gigabit').innerText = number * 8 * 1024;
+                document.getElementById('wyniki_terabit').innerText = number * 8;
+                document.getElementById('wyniki_bajt').innerText = number  * 1024 * 1024 * 1024 * 1024;
+                document.getElementById('wyniki_kilobajt').innerText = number * 1024 * 1024 * 1024;
+                document.getElementById('wyniki_megabajt').innerText = number * 1024 * 1024;
+                document.getElementById('wyniki_gigabajt').innerText = number * 1024;
+                document.getElementById('wyniki_terabajt').innerText = number;
+            }
+
+        }
+        if(select == "czas")
+        {
+            let select_jednostka = document.getElementById('typ_czas').value;
+
+            if(select_jednostka == "milisekunda")
+            {
+                document.getElementById('wyniki_milisekunda').innerText = number;
+                document.getElementById('wyniki_sekunda').innerText = (number / 1000).toPrecision(4);
+                document.getElementById('wyniki_minuta').innerText = (number / 1000 / 60).toPrecision(4);
+                document.getElementById('wyniki_godzina').innerText = (number / 1000 / 60 / 60).toPrecision(4);
+                document.getElementById('wyniki_dzien').innerText = (number / 1000 / 60 / 60 / 24).toPrecision(4);
+            }
+            if(select_jednostka == "sekunda")
+            {
+                document.getElementById('wyniki_milisekunda').innerText = number * 1000;
+                document.getElementById('wyniki_sekunda').innerText = number;
+                document.getElementById('wyniki_minuta').innerText = (number / 60).toPrecision(4);
+                document.getElementById('wyniki_godzina').innerText = (number / 60 / 60).toPrecision(4);
+                document.getElementById('wyniki_dzien').innerText = (number / 60 / 60 / 24).toPrecision(4);
+            }
+            if(select_jednostka == "minuta")
+            {
+                document.getElementById('wyniki_milisekunda').innerText = number * 1000 * 60;
+                document.getElementById('wyniki_sekunda').innerText = number  * 60;
+                document.getElementById('wyniki_minuta').innerText = number;
+                document.getElementById('wyniki_godzina').innerText = (number / 60).toPrecision(4);
+                document.getElementById('wyniki_dzien').innerText = (number / 60 / 24).toPrecision(4);
+            }
+            if(select_jednostka == "godzina")
+            {
+                document.getElementById('wyniki_milisekunda').innerText = number * 1000 * 60 * 60;
+                document.getElementById('wyniki_sekunda').innerText = number  * 60 * 60;
+                document.getElementById('wyniki_minuta').innerText = number * 60;
+                document.getElementById('wyniki_godzina').innerText = number;
+                document.getElementById('wyniki_dzien').innerText = (number / 24).toPrecision(4);
+
+            }
+            if(select_jednostka == "dzien")
+            {
+                document.getElementById('wyniki_milisekunda').innerText = number * 1000 * 60 * 60 * 24;
+                document.getElementById('wyniki_sekunda').innerText = number  * 60 * 60 * 24;
+                document.getElementById('wyniki_minuta').innerText = number * 60 * 24;
+                document.getElementById('wyniki_godzina').innerText = number * 24;
+                document.getElementById('wyniki_dzien').innerText = number;
+            }
+        }
+        if(select == "obszar")
+        {
+            let select_jednostka = document.getElementById('typ_obszar').value;
+
+            if(select_jednostka == "milimetr2")
+            {
+                document.getElementById('wyniki_milimetr2').innerText = number;
+                document.getElementById('wyniki_centymetr2').innerText = (number * 0.01).toPrecision(4);
+                document.getElementById('wyniki_decymetr2').innerText = (number * 0.0001).toPrecision(4);
+                document.getElementById('wyniki_metr2').innerText = (number * 0.000001).toPrecision(4);
+                document.getElementById('wyniki_kilometr2').innerText = (number * 0.000000000001).toPrecision(4);
+            }
+            if(select_jednostka == "centymetr2")
+            {
+                document.getElementById('wyniki_milimetr2').innerText = number * 100;
+                document.getElementById('wyniki_centymetr2').innerText = number;
+                document.getElementById('wyniki_decymetr2').innerText = (number * 0.01).toPrecision(4);
+                document.getElementById('wyniki_metr2').innerText = (number * 0.0001).toPrecision(4);
+                document.getElementById('wyniki_kilometr2').innerText = (number * 0.0000000001).toPrecision(4);
+            }
+            if(select_jednostka == "decymetr2")
+            {
+                document.getElementById('wyniki_milimetr2').innerText = number * 10000;
+                document.getElementById('wyniki_centymetr2').innerText = number * 100;
+                document.getElementById('wyniki_decymetr2').innerText = number;
+                document.getElementById('wyniki_metr2').innerText = (number * 0.01).toPrecision(4);
+                document.getElementById('wyniki_kilometr2').innerText = (number * 0.0000001).toPrecision(4);
+            }
+            if(select_jednostka == "metr2")
+            {
+                document.getElementById('wyniki_milimetr2').innerText = number * 1000000;
+                document.getElementById('wyniki_centymetr2').innerText = number *10000;
+                document.getElementById('wyniki_decymetr2').innerText = number * 100;
+                document.getElementById('wyniki_metr2').innerText = number;
+                document.getElementById('wyniki_kilometr2').innerText = (number * 0.000001).toPrecision(4);
+            }
+            if(select_jednostka == "kilometr2")
+            {
+                document.getElementById('wyniki_milimetr2').innerText = number * 1000000000000;
+                document.getElementById('wyniki_centymetr2').innerText = number * 10000000000;
+                document.getElementById('wyniki_decymetr2').innerText = number * 100000000;
+                document.getElementById('wyniki_metr2').innerText = number * 1000000;
+                document.getElementById('wyniki_kilometr2').innerText = number;
+            }
+        }
+
+    }
+
+</script>
+<body>
+    <div id="header">
+        <h1> Przelicznik jednostek </h1>
+    </div>
+    <div id="container">
+        <select name="typ" id="typ" onchange="select_script()">
+            <option value="odleglosc">odległość</option>
+            <option value="przechowywanie">przechowywanie</option>
+            <option value="czas">czas</option>
+            <option value="obszar">obszar</option>
+        </select>
+
+        <form action="validate.php" method="post">
+            <input type="text" name="liczba" id="liczba" placeholder="Podaj wartość" maxlength="4" required onkeypress="javascript:return isNumber(event)">
+        </form>
+
+        <select name="typ_odleglosc" id="typ_odleglosc">
+            <option value="milimetr">milimetr</option>
+            <option value="centymetr">centymetr</option>
+            <option value="decymetr">decymetr</option>
+            <option value="metr">metr</option>
+            <option value="kilometr">kilometr</option>
+            <option value="mila">mila</option>
+        </select>
+        <select name="typ_przechowywanie" id="typ_przechowywanie">
+            <option value="bit">bit</option>
+            <option value="kilobit">kilobit</option>
+            <option value="megabit">megabit</option>
+            <option value="terabit">terabit</option>
+            <option value="gigabit">gigabit</option>
+            <option value="bajt">bajt</option>
+            <option value="kilobajt">kilobajt</option>
+            <option value="megabajt">megabajt</option>
+            <option value="terabajt">terabajt</option>
+        </select>
+        <select name="typ_czas" id="typ_czas">
+            <option value="milisekunda">milisekunda</option>
+            <option value="sekunda">sekunda</option>
+            <option value="minuta">minuta</option>
+            <option value="godzina">godzina</option>
+            <option value="dzien">dzień</option>
+        </select>
+        <select name="typ_obszar" id="typ_obszar">
+            <option value="milimetr2">milimetr&sup2;</option>
+            <option value="centymetr2">centymetr&sup2;</option>
+            <option value="decymetr2">decymetr&sup2;</option>
+            <option value="metr2">metr&sup2;</option>
+            <option value="kilometr2">kilometr&sup2;</option>
+        </select>
+
+        <input type="submit" value="Zamień" id="submit" onclick="convert()">
+    </div>
+
+    <div id="wyniki">
+            <div id="wyniki_odleglosc">
+                <p> Milimetry: <span id="wyniki_milimetr"> 0 </span> </p>
+                <p> Centymetry: <span id="wyniki_centymetr"> 0 </span> </p>
+                <p> Decymetry: <span id="wyniki_decymetr"> 0 </span> </p>
+                <p> Metry: <span id="wyniki_metr"> 0 </span> </p>
+                <p> Kilometry: <span id="wyniki_kilometr"> 0 </span> </p>
+                <p> Mile: <span id="wyniki_mila"> 0 </span> </p>
+            </div>
+            <div id="wyniki_przechowywanie">
+                <p> Bity: <span id="wyniki_bit"> 0 </span> </p>
+                <p> Kilobity: <span id="wyniki_kilobit"> 0 </span> </p>
+                <p> Megabity: <span id="wyniki_megabit"> 0 </span> </p>
+                <p> Gigabity: <span id="wyniki_gigabit"> 0 </span> </p>
+                <p> Terabity: <span id="wyniki_terabit"> 0 </span> </p>
+                <p> Bajty: <span id="wyniki_bajt"> 0 </span> </p>
+                <p> Kilobajty: <span id="wyniki_kilobajt"> 0 </span> </p>
+                <p> Megabajty: <span id="wyniki_megabajt"> 0 </span> </p>
+                <p> Gigabajty: <span id="wyniki_gigabajt"> 0 </span> </p>
+                <p> Terabajty: <span id="wyniki_terabajt"> 0 </span> </p>
+            </div>
+            <div id="wyniki_czas">
+                <p> Milisekundy: <span id="wyniki_milisekunda"> 0 </span> </p>
+                <p> Sekundy: <span id="wyniki_sekunda"> 0 </span> </p>
+                <p> Minuty: <span id="wyniki_minuta"> 0 </span> </p>
+                <p> Godziny: <span id="wyniki_godzina"> 0 </span> </p>
+                <p> Dni: <span id="wyniki_dzien"> 0 </span> </p>
+            </div><div id="wyniki_obszar">
+                <p> Milimetry&sup2;: <span id="wyniki_milimetr2"> 0 </span> </p>
+                <p> Centymetry&sup2;: <span id="wyniki_centymetr2"> 0 </span> </p>
+                <p> Decymetry&sup2;: <span id="wyniki_decymetr2"> 0 </span> </p>
+                <p> Metry&sup2;: <span id="wyniki_metr2"> 0 </span> </p>
+                <p> Kilometry&sup2;: <span id="wyniki_kilometr2"> 0 </span> </p>
+            </div>
+
+        </div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+body
+{
+    background-color: darkslategrey;
+    color: whitesmoke;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+span
+{
+    color: darksalmon;
+}
+
+#container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#typ_czas
+{
+    display: none;
+}
+
+#typ_obszar
+{
+    display: none;
+}
+
+#typ_przechowywanie
+{
+    display: none;
+}
+
+#typ_odleglosc
+{
+    display: flex;
+}
+
+#wyniki
+{
+    display: flex;
+    justify-content: center;
+}
+
+#wyniki_odleglosc
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#wyniki_obszar
+{
+    display: none;
+    flex-direction: column;
+}
+
+#wyniki_czas
+{
+    display: none;
+    flex-direction: column;
+}
+
+#wyniki_przechowywanie
+{
+    display: none;
+    flex-direction: column;
+}
+
+#header
+{
+    display: flex;
+    justify-content: center;
+    font-family: 'Audiowide', cursive;
+    font-size: 25px;
+}
+
+input[type="text"]
+{
+    height: 20px;
+    padding: 5px;
+}
+
+select
+{
+    padding: 5px;
+}
+
+input[type="submit"]
+{
+    width: 100px;
+}
+
+input[type="submit"]:hover
+{
+    background-color: darksalmon;
+}
